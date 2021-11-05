@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
 const name = 'Zaid Rashid'
@@ -11,10 +9,17 @@ export default function Layout({ children, home }) {
   return (
     <div>
       <nav id="tailwind-header" className="my-4">
-        <div className="max-w-5xl mx-auto my-4">
-          <div className="flex justify-end space-x-6">
-            <a href="" className="text-gray-600 hover:no-underline hover:text-black">Blog</a>
-            <a href="" className="text-gray-600 hover:no-underline hover:text-black">About</a>
+        <div className="flex justify-between max-w-5xl mx-auto my-4">
+          <div className="space-x-6 text-black-600 hover:no-underline hover:text-black">
+              Zaid Rashid
+          </div>
+          <div className="space-x-6">
+            <Link href="/">
+              <a className="text-gray-600 hover:no-underline hover:text-black">Blog</a>
+            </Link>
+            <Link href="/about">
+              <a className="text-gray-600 hover:no-underline hover:text-black">About</a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -36,41 +41,6 @@ export default function Layout({ children, home }) {
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
-        <header className={styles.header}>
-          {home ? (
-            <>
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className="rounded-full"
-                height={144}
-                width={144}
-                alt={name}
-              />
-              <h1 className={utilStyles.heading2Xl}>{name}</h1>
-            </>
-          ) : (
-            <>
-              <Link href="/">
-                <a>
-                  <Image
-                    priority
-                    src="/images/profile.jpg"
-                    className="rounded-full"
-                    height={108}
-                    width={108}
-                    alt={name}
-                  />
-                </a>
-              </Link>
-              <h2 className={utilStyles.headingLg}>
-                <Link href="/">
-                  <a className={utilStyles.colorInherit}>{name}</a>
-                </Link>
-              </h2>
-            </>
-          )}
-        </header>
         <main>{children}</main>
         {!home && (
           <div className={styles.backToHome}>
